@@ -4,7 +4,7 @@ import SearchBar from '../components/SearchBar';
 import useResults from '../hooks/useResults';
 import ResultsList from '../components/ResultsList';
 
-const SearchScreen = () => {
+const SearchScreen = (/*{ navigation }*/) => {
   const [term, setTerm] = useState('');
   const [searchApi, results, errorMessage] = useResults();
 
@@ -18,7 +18,8 @@ const SearchScreen = () => {
   }
 
   return (
-    <View /*style={{ marginLeft: 30 }}*/>
+    <>
+    {/*<View style= {{flex:1}} /*style={{ borderColor: 'red', borderWidth: 10 }}*/ /*style={{ marginLeft: 30 }}>*/}
       <SearchBar 
         term={term} 
         //onTermChange={newTerm => setTerm(newTerm)}
@@ -27,22 +28,26 @@ const SearchScreen = () => {
         onTermSubmit={() => searchApi(term)}>
       </SearchBar>
       {errorMessage ? <Text>{errorMessage}</Text>: null}
-      <Text>We have found {results.length} results</Text>
+      {/*<Text>We have found {results.length} results</Text>*/}
       <ScrollView>
         <ResultsList 
           results={filterResultsByPrice('$')} 
-          title="Cost Effective">
+          title="Cost Effective"
+          /*navigation={navigation}*/>
         </ResultsList>
         <ResultsList 
           results={filterResultsByPrice('$$')} 
-          title="Bit Pricier">
+          title="Bit Pricier"
+          /*navigation={navigation}*/>
         </ResultsList>
         <ResultsList 
           results={filterResultsByPrice('$$$')} 
-          title="Big Spender">
+          title="Big Spender"
+          /*navigation={navigation}*/>
         </ResultsList>
       </ScrollView>
-    </View>
+    {/*</View>*/}
+    </>
   );
 };
 
